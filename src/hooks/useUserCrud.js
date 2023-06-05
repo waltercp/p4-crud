@@ -5,7 +5,7 @@ const useUserCrud = () => {
     const [users, setUsers] = useState()
 
 
-    const url = 'https://users-crud.academlo.tech/users/'
+    const url = 'https://user-crud-test-ob10.onrender.com/api/v1/users/'
 
 
     //GET
