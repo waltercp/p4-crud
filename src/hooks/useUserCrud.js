@@ -1,48 +1,42 @@
-import axios from "axios";
-import { useState } from "react";
+import { useState } from 'react'
+import axios from 'axios'
 
 const useUserCrud = () => {
-    const [users, setUsers] = useState();
+    const [ users, setUsers ] = useState()
 
-    const url = 'https://user-crud-test-ob10.onrender.com/api/v1/users/';
-
+    //const url = 'https://users-crud.academlo.tech/users/'
+    const url = "https://users-crud-kxx8.onrender.com/api/v1"
+    //const url = "http://localhost:8080/api/v1"
     // GET
     const getAllUsers = () => {
-        axios.get(url)
+        axios.get(`${url}/users`)
             .then(res => setUsers(res.data))
-            .catch(err => console.log(err));
-    };
+            .catch(err => console.log(err))
+    }
 
     // POST
     const createNewUser = data => {
-        axios.post(url, data)
-            .then(() => getAllUsers())
-            .catch(err => console.log(err));
-    };
+        axios.post(`${url}/users`, data)
+            .then(res => getAllUsers())
+            .catch(err => console.log(err))
+    }
 
     // DELETE
     const deleteUserById = id => {
-        const urlDelete = `${url}${id}/`;
+        const urlDelete = `${url}/users/${id}`
         axios.delete(urlDelete)
-            .then(() => getAllUsers())
-            .catch(err => console.log(err));
-    };
+            .then(res => getAllUsers())
+            .catch(err => console.log(err))
+    }
 
     // UPDATE
     const updateUserById = (id, data) => {
-        const urlUpdate = `${url}${id}/`;
-        axios.patch(urlUpdate, data)
-            .then(() => getAllUsers())
-            .catch(err => console.log(err));
-    };
+        const urlUpdate = `${url}/users/${id}`
+        axios.put(urlUpdate, data)
+            .then(res => getAllUsers())
+            .catch(err => console.log(err))
+    }
+    return { users, getAllUsers, createNewUser, deleteUserById, updateUserById }
+}
 
-    return {
-        users,
-        getAllUsers,
-        createNewUser,
-        deleteUserById,
-        updateUserById
-    };
-};
-
-export default useUserCrud;
+export default useUserCrud
