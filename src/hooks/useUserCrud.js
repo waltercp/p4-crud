@@ -1,47 +1,40 @@
-import axios from "axios"
-import { useState } from "react"
+import axios from "axios";
+import { useState } from "react";
 
 const useUserCrud = () => {
-    const [users, setUsers] = useState()
+    const [users, setUsers] = useState();
 
+    const url = 'https://user-crud-test-ob10.onrender.com/api/v1/users/';
 
-    const url = 'https://user-crud-test-ob10.onrender.com/api/v1/users/'
-
-
-    //GET
-
+    // GET
     const getAllUsers = () => {
         axios.get(url)
             .then(res => setUsers(res.data))
-            .catch(err => console.log(err))
-    }
+            .catch(err => console.log(err));
+    };
 
-    //POST
+    // POST
     const createNewUser = data => {
         axios.post(url, data)
             .then(() => getAllUsers())
-            .catch(err => console.log(err))
-    }
+            .catch(err => console.log(err));
+    };
 
-
-
-    //DELETE
+    // DELETE
     const deleteUserById = id => {
-        const urlDelete = `${url}${id}/`
+        const urlDelete = `${url}${id}/`;
         axios.delete(urlDelete)
             .then(() => getAllUsers())
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
+    };
 
-    }
-    //UTDATE
-
+    // UPDATE
     const updateUserById = (id, data) => {
-        const urlUpdate = `${url}${id}/`
+        const urlUpdate = `${url}${id}/`;
         axios.patch(urlUpdate, data)
             .then(() => getAllUsers())
-            .catch(err => console.log(err))
-
-    }
+            .catch(err => console.log(err));
+    };
 
     return {
         users,
@@ -49,7 +42,7 @@ const useUserCrud = () => {
         createNewUser,
         deleteUserById,
         updateUserById
-    }
-}
+    };
+};
 
-export default useUserCrud 
+export default useUserCrud;
