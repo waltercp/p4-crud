@@ -4,9 +4,8 @@ import axios from 'axios'
 const useUserCrud = () => {
     const [ users, setUsers ] = useState()
 
-    //const url = 'https://users-crud.academlo.tech/users/'
     const url = "https://user-crud-test-ob10.onrender.com/api/v1"
-    //const url = "http://localhost:8080/api/v1"
+
     // GET
     const getAllUsers = () => {
         axios.get(`${url}/users`)
@@ -36,7 +35,11 @@ const useUserCrud = () => {
             .then(res => getAllUsers())
             .catch(err => console.log(err))
     }
-    return { users, getAllUsers, createNewUser, deleteUserById, updateUserById }
+    return { users,
+         getAllUsers, 
+         createNewUser, 
+         deleteUserById, 
+         updateUserById }
 }
 
 export default useUserCrud
